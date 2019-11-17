@@ -17,11 +17,11 @@ function registerRoutes(app) {
 module.exports = app => {
   // es6 polyfill
   // 这个必须的加，因为在node环境中使用es6的模块
-  require('@babel/register')
+  // require('@babel/register')
   // 如果.env.devo
-  // require('@babel/register')({
-  //   presets: ['@babel/preset-env']
-  // })
+  require('@babel/register')({
+    presets: ['@babel/preset-env']
+  })
 
   // parse app body
   // https://expressjs.com/en/4x/api.html#req.body

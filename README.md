@@ -1,4 +1,4 @@
-# maps-charts
+# map-chart
 
 ## Project setup
 ```
