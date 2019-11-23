@@ -3,6 +3,7 @@ import Mock from 'mockjs'
 import task from './task'
 
 const mocks = [...task]
+
 // const mocks = []
 
 // for pure front mock
@@ -44,10 +45,10 @@ export function mockXHR() {
 // when you in development environment.
 const responseFake = (url, type, respond) => {
   return {
-    url: new RegExp(`/mock${url}/`),
+    url: new RegExp(`/mock${url}`),
     type: type || 'get',
     response(req, res) {
-      res.json(respond)
+      res.json(respond instanceof Function ? respond(req, res) : respond)
     }
   }
 }

@@ -239,11 +239,14 @@ export default {
         spinnerType: 'snake'
       })
       getAllStatus(startTime, endTime).then(resp => {
-        const respData = resp.data
-        this.allData = respData.data[respData.data.length - 1]
-        this.departData = respData.data.slice(0, respData.data.length - 1)
-        this.departData = this.departData.reverse()
         Indicator.close()
+        console.log(resp)
+        const respData = resp.data
+        this.allData = respData.allData
+        this.departData = respData.departData
+        this.departData = this.departData.reverse()
+      }).catch(err => {
+
       })
     }
   },
@@ -283,7 +286,7 @@ export default {
           height 35px
           line-height 35px
           padding-left 10px
-          background url('/static/images/icon-time.png') left center no-repeat
+          background url('~@/assets/images/icon-time.png') left center no-repeat
           background-size 14px
       .split
         display inline-block
@@ -301,7 +304,7 @@ export default {
           height 35px
           line-height 35px
           padding-left 10px
-          background url('/static/images/icon-time.png') left center no-repeat
+          background url('~@/assets/images/icon-time.png') left center no-repeat
           background-size 14px
     .main
       margin-top 15px;
@@ -322,13 +325,13 @@ export default {
           border 1px solid #E4ECF2
           padding 10px 12px
           font-size 14px
-          background url('/static/images/show-close.png') no-repeat
+          background url('~@/assets/images/show-close.png') no-repeat
           background-position right 12px top 12px
           background-size 14px
           border-radius 6px
           margin-bottom 12px
           &.open
-            background-image url('/static/images/show-open.png')
+            background-image url('~@/assets/images/show-open.png')
             background-size 8px
             .detail
               display block
@@ -347,7 +350,7 @@ export default {
               display inline-block
               height 40px
               width 47%
-              background url('/static/images/lyrical-total-border.png') no-repeat
+              background url('~@/assets/images/lyrical-total-border.png') no-repeat
               background-position center
               background-size 100%
               vertical-align top

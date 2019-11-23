@@ -63,7 +63,7 @@ export default {
     width 25px
     height 48px
     padding-left 5%
-    background-image url('/static/images/icon-back.png')
+    background-image url('~@/assets/images/icon-back.png')
     background-repeat no-repeat
     background-position center
     background-size 25%
@@ -84,7 +84,7 @@ export default {
     width 36px
     height 48px
     padding-right 5%
-    background-image url('/static/images/icon-search.png')
+    background-image url('~@/assets/images/icon-search.png')
     background-repeat no-repeat
     background-position center
     background-size 33%

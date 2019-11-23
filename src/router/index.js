@@ -1,14 +1,24 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import OverView from '@/views/overview'
+import Map from '@/views/map'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
+    redirect: '/overview'
+  },
+  {
+    path: '/overview',
+    name: 'overview',
     component: OverView
+  },
+  {
+    path: '/map',
+    name: 'map',
+    component: Map
   },
   {
     path: '/about',

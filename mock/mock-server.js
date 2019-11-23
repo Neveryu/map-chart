@@ -1,4 +1,9 @@
+const chokidar = require('chokidar')
+const chalk = require('chalk')
 const bodyParser = require('body-parser')
+const path = require('path')
+
+const mockDir = path.join(process.cwd(), 'mock')
 
 function registerRoutes(app) {
   let mockLastIndex
@@ -12,6 +17,14 @@ function registerRoutes(app) {
     mockRoutesLength: mockRoutesLength,
     mockStartIndex: mockLastIndex - mockRoutesLength
   }
+}
+
+function unregisterRoutes() {
+  Object.keys(require.cache).forEach(i => {
+    if(i.includes(mockDir)) {
+      delete require.cache[require.resolve(i)]
+    }
+  })
 }
 
 module.exports = app => {
@@ -35,5 +48,27 @@ module.exports = app => {
   var mockStartIndex = mockRoutes.mockStartIndex
 
   // watch files, hot reload mock server
-  
+  // 当在使用development mock server的时候，修改了mock的内容，热更新
+  chokidar.watch(mockDir, {
+    ignored: /mock-server/,
+    ignoreInitial: true
+  }).on('all', (event, path) => {
+    if(event === 'change' || event === 'add') {
+      try {
+        // remove mock routes stack
+        app._router.stack.splice(mockStartIndex, mockRoutesLength)
+
+        // clear routes cache
+        unregisterRoutes()
+
+        const mockRoutes = registerRoutes(app)
+        mockRoutesLength = mockRoutes.mockRoutesLength
+        mockStartIndex = mockRoutes.mockStartIndex
+
+        console.log(chalk.magentaBright(`\n > Mock Server hot reload success! changed ${path}`))
+      } catch(error) {
+        console.log(chalk.redBright(error))
+      }
+    }
+  })
 }

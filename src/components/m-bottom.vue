@@ -3,7 +3,7 @@
     <div class="menu menu1" :class="{active: currentMenu === 1}" @click="switchRoute('overview')">
       <span class="name">概况</span>
     </div>
-    <div class="menu menu2" :class="{active: currentMenu === 2}" @click="switchRoute('chart')">
+    <div class="menu menu2" :class="{active: currentMenu === 2}" @click="switchRoute('map')">
       <span class="name">形势图</span>
     </div>
     <div class="menu menu3" :class="{active: currentMenu === 3}" @click="switchRoute('tongji')">
@@ -58,15 +58,15 @@ export default {
       .name
         color #1b98ff
   .menu1
-    background-image url('/static/images/icon-overview.png')
+    background-image url('~@/assets/images/icon-overview.png')
     &.active
-      background-image url('/static/images/icon-overview-a.png')
+      background-image url('~@/assets/images/icon-overview-a.png')
   .menu2
-    background-image url('/static/images/icon-map.png')
+    background-image url('~@/assets/images/icon-map.png')
     &.active
-      background-image url('/static/images/icon-map-a.png')
+      background-image url('~@/assets/images/icon-map-a.png')
   .menu3
-    background-image url('/static/images/icon-tongji.png')
+    background-image url('~@/assets/images/icon-tongji.png')
     &.active
-      background-image url('/static/images/icon-tongji-a.png')
+      background-image url('~@/assets/images/icon-tongji-a.png')
 </style>
