@@ -240,10 +240,8 @@ export default {
       })
       getAllStatus(startTime, endTime).then(resp => {
         Indicator.close()
-        console.log(resp)
-        const respData = resp.data
-        this.allData = respData.allData
-        this.departData = respData.departData
+        this.allData = resp.allData
+        this.departData = resp.departData
         this.departData = this.departData.reverse()
       }).catch(err => {
 

@@ -1,6 +1,6 @@
 <template>
   <div class="chart-wrapper">
-    <m-header title="舆情督办" :showBackApp="true"></m-header>
+    <m-header title="区域分布" :showBackApp="true"></m-header>
     <div class="container" id="container"></div>
     <m-bottom :currentMenu="2"></m-bottom>
   </div>
@@ -66,14 +66,9 @@ export default {
     },
     _getArea(startTime, endTime) {
       getAreaData(startTime, endTime).then(resp => {
-        // let respData = resp.data.data
-        // respData.forEach((v, i, _this) => {
-        //   this.myPoints.forEach((vv, ii, __this) => {
-        //     if(vv.name === v[0]) {
-        //       vv.value = v[1]
-        //     }
-        //   })
-        // })
+        resp.forEach((v, i) => {
+          this.myPoints[i].value = v
+        })
         this.addMarkers()
       })
     }
@@ -82,7 +77,7 @@ export default {
     this.map = new AMap.Map('container', {
       zoom: 11, // 级别
       zoomEnable: false,
-      center: [113.862133, 22.698765] // 中心点坐标【宝安】
+      center: [113.862133, 22.678765] // 中心点坐标【宝安】
       // mapStyle: 'amap://styles/whitesmoke'
       // viewMode:'3D' // 使用3D视图
     })

@@ -4,7 +4,15 @@ import Mock from 'mockjs'
 const count = 20
 const List = []
 
-let temp
+// overview-list-data
+let temp = null
+
+// map data
+const mapData = []
+for(let i = 0; i < 10; i++) {
+  mapData.push(Mock.mock('@natural(60, 1099)'))
+}
+
 
 for(let i = 0; i < count; i++) {
   temp = Mock.mock({
@@ -60,7 +68,7 @@ export default [
       const { startTime, endTime } = config.query
       return {
         code: 0,
-        data: []
+        data: mapData
       }
     }
   }

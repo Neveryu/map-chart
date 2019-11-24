@@ -23,7 +23,7 @@ service.interceptors.response.use(
   response => {
     const res = response.data
     if(res.code === 0) {
-      return res
+      return res.data
     } else {
       return Promise.reject(new Error(res.message || 'Error'))
     }
