@@ -1,4 +1,3 @@
-// import mapList from ''
 import Mock from 'mockjs'
 
 const count = 20
@@ -10,7 +9,7 @@ let temp = null
 // map data
 const mapData = []
 for(let i = 0; i < 10; i++) {
-  mapData.push(Mock.mock('@natural(60, 1099)'))
+  mapData.push(Mock.mock('@natural(60, 799)'))
 }
 
 
@@ -30,6 +29,7 @@ for(let i = 0; i < count; i++) {
   List.push(temp)
 }
 
+export { mapData }
 export default [
   {
     url: '/mobile/getStatusByArea',

@@ -350,7 +350,7 @@ export default {
               width 47%
               background url('~@/assets/images/lyrical-total-border.png') no-repeat
               background-position center
-              background-size 100%
+              background-size 100% 100%
               vertical-align top
               text-align center
               .name

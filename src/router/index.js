@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import OverView from '@/views/overview'
 import Map from '@/views/map'
-import Statistics from '@/views/statistics'
+import Tongji from '@/views/tongji'
 
 Vue.use(VueRouter)
 
@@ -22,9 +22,9 @@ const routes = [
     component: Map
   },
   {
-    path: '/statistics',
-    name: 'statistics',
-    component: Statistics
+    path: '/tongji',
+    name: 'tongji',
+    component: Tongji
   },
   {
     path: '/about',

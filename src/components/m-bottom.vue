@@ -6,7 +6,7 @@
     <div class="menu menu2" :class="{active: currentMenu === 2}" @click="switchRoute('map')">
       <span class="name">形势图</span>
     </div>
-    <div class="menu menu3" :class="{active: currentMenu === 3}" @click="switchRoute('statistics')">
+    <div class="menu menu3" :class="{active: currentMenu === 3}" @click="switchRoute('tongji')">
       <span class="name">统计对比</span>
     </div>
   </div>
