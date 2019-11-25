@@ -49,22 +49,9 @@
   </div>
 </template>
 <script>
-import { debounce } from '@/util/debounce'
-// let echarts = require('echarts/lib/echarts')
-require('echarts/lib/chart/bar')
-require('echarts/lib/component/tooltip')
-require('echarts/lib/component/legend')
 export default {
   name: 'detail-catelog',
   props: {
-    width: {
-      type: String,
-      default: ''
-    },
-    height: {
-      type: String,
-      default: ''
-    },
     tableData: {
       type: Array,
       required: true,
@@ -85,47 +72,38 @@ export default {
     }
   },
   mounted() {
-    this.$el.style.width = this.width
-    this.$el.style.height = this.height
-    this.__resizeHanlder = debounce(() => {
-      if (this.charts) {
-        this.charts.resize()
-      }
-    }, 100)
-    window.addEventListener('resize', this.__resizeHanlder)
-    this.__resizeHanlder()
   }
 }
 </script>
 <style scoped lang="stylus">
-  .main-wrapper
-    box-sizing border-box
-    padding 10px
-    .table
-      width 100%
-      color #666
-      .thead
-        background #1895FF
-        color #fff
-        text-align center
-        tr
-          height 30px
-          line-height 30px
-          font-size 14px
-      .tbody
-        tr
-          height 30px
-          line-height 30px
-          &:nth-child(even)
-            background #F7F7F7
-          .value
-            color #1895FF
-    .more
-      margin-top 5px
-      height 30px
-      line-height 30px
-      color #9B9B9B
-      border-top 1px solid #eee
-      font-size 12px
+.main-wrapper
+  box-sizing border-box
+  padding 6px
+  .table
+    width 100%
+    color #666
+    .thead
+      background #1895FF
+      color #fff
       text-align center
+      tr
+        height 30px
+        line-height 30px
+        font-size 14px
+    .tbody
+      tr
+        height 30px
+        line-height 30px
+        &:nth-child(even)
+          background #F7F7F7
+        .value
+          color #1895FF
+  .more
+    margin-top 5px
+    height 30px
+    line-height 30px
+    color #9B9B9B
+    border-top 1px solid #eee
+    font-size 12px
+    text-align center
 </style>

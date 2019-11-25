@@ -79,7 +79,7 @@
           <div class="title">
             <p class="name">任务细分类别分布</p>
           </div>
-          <div class="content">
+          <div class="content" style="height: auto;">
             <detail-catelog width="100%" height="100%" :table-data="detailCatelogData"></detail-catelog>
           </div>
         </div>

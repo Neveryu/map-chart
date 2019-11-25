@@ -1,0 +1,11 @@
+sudo: required
+language: node_js
+node_js:
+  - "node"
+cache: npm
+script: bash ./deploy.sh
+branches:
+  only:
+  - master
+notifications:
+  email: true
