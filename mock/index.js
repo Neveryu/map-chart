@@ -29,7 +29,7 @@ export function mockXHR() {
         const { body, type, url } = options
         result = respond({
           method: type,
-          body: JSON.prase(body)
+          body: JSON.parse(body)
         })
       } else {
         result = respond
