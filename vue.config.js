@@ -24,7 +24,7 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: process.env.NODE_ENV === 'production' ? '/map-chart/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
@@ -58,6 +58,10 @@ module.exports = {
         '@': resolve('src')
       }
     }
+  },
+  pwa: {
+    msTileColor: '#000',
+    appleMobileWebAppCapable: 'yes'
   },
   chainWebpack(config) {
 

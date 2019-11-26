@@ -11,8 +11,7 @@ List = Mock.mock({
   total: ['@natural(0, 99)', '@natural(0, 99)', '@natural(0, 99)', '@natural(0, 99)', '@natural(0, 99)', '@natural(0, 99)', '@natural(0, 99)'],
   untreat: ['@natural(0, 49)', '@natural(0, 49)', '@natural(0, 49)', '@natural(0, 49)', '@natural(0, 49)', '@natural(0, 49)', '@natural(0, 49)'],
   audit: ['@natural(0, 39)', '@natural(0, 39)', '@natural(0, 39)', '@natural(0, 39)', '@natural(0, 39)', '@natural(0, 39)', '@natural(0, 39)'],
-  untreating: ['@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)'],
-  untreat: ['@natural(0, 19)', '@natural(0, 19)', '@natural(0, 19)', '@natural(0, 19)', '@natural(0, 19)', '@natural(0, 19)', '@natural(0, 19)']
+  untreating: ['@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)']
 })
 
 for(let i = 0; i < count; i++) {
@@ -22,14 +21,13 @@ for(let i = 0; i < count; i++) {
     rate: '@float(0, 30, 2, 2)',
     number: '@natural(0, 199)',
     percentage: '@natural(39, 79)'
-  }))  
+  }))
 }
 
 export default [{
   url: '/mobile/getTongji',
   type: 'get',
   response: config => {
-    const { startTime, endTime } = config.query
     let areaXData = []
     points.forEach(item => {
       areaXData.push(item.name)
@@ -40,7 +38,6 @@ export default [{
       untreat: List.untreat,
       audit: List.audit,
       untreating: List.untreating,
-      untreat: List.untreat,
       areaXData,
       areaYData: mapData,
       catelogData: [

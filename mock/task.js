@@ -34,7 +34,6 @@ export default [
     url: '/mobile/getStatusByArea',
     type: 'get',
     response: config => {
-      const { startTime, endTime } = config.query
       let allData = {
         totalCount: 0,
         rate: '',
@@ -64,7 +63,6 @@ export default [
     url: '/mobile/getArea',
     type: 'get',
     response: config => {
-      const { startTime, endTime } = config.query
       return {
         code: 0,
         data: mapData
