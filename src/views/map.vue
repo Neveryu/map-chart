@@ -37,6 +37,7 @@ export default {
       let _marker = null
       let _this = this
       this.myPoints.forEach((v, i) => {
+        /* eslint-disable */
         _marker = new AMap.Marker({
           // 自定义点标记覆盖物内容
           content: `
@@ -45,13 +46,14 @@ export default {
             </div>
           `,
           id: v.id,
-          position: v.position,  // 基点位置
-          offset: new AMap.Pixel(-50, -90),  // 相对于基点的偏移位置
-          draggable: false,  // 是否可拖拽移动
-          bubble: false,  // 是否将覆盖物的鼠标或touch等事件冒泡到地图上
-          clickable: true,  // 点标记是否可点击
+          position: v.position, // 基点位置
+          /* eslint-disable */
+          offset: new AMap.Pixel(-50, -90), // 相对于基点的偏移位置
+          draggable: false, // 是否可拖拽移动
+          bubble: false, // 是否将覆盖物的鼠标或touch等事件冒泡到地图上
+          clickable: true, // 点标记是否可点击
           topWhenClick: true,
-          raiseOnDrag: true  // 设置拖拽点标记时是否开启点标记离开地图的效果
+          raiseOnDrag: true // 设置拖拽点标记时是否开启点标记离开地图的效果
         })
         _marker.on('click', function(MapsEvent) {
           let targetId = MapsEvent.target.C.id
@@ -74,6 +76,7 @@ export default {
     }
   },
   mounted() {
+    /* eslint-disable */
     this.map = new AMap.Map('container', {
       zoom: 11, // 级别
       zoomEnable: false,

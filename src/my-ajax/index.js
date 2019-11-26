@@ -14,12 +14,11 @@ service.interceptors.response.use(
    * If you want to get http information such as headers or status
    * Please return response => response
    */
-
-   /**
-    * Determine the request status by custom code
-    * Here is just an example
-    * You can also judge the status by HTTP Status Code
-    */
+  /**
+   * Determine the request status by custom code
+   * Here is just an example
+   * You can also judge the status by HTTP Status Code
+   */
   response => {
     const res = response.data
     if(res.code === 0) {
@@ -37,7 +36,7 @@ service.interceptors.response.use(
           position: 'middle',
           duration: 2500
         })
-        console.log('my-ajax service response error：' + error)  // for debug
+        console.log('my-ajax service response error：' + error) // for debug
         return Promise.reject(error)
       }
       if(error.response.status === 500) {
@@ -51,7 +50,7 @@ service.interceptors.response.use(
     // Message.closeAll()
     // Message.error(`服务器异常 - ${error}`)
     Indicator.close()
-    console.log('my-ajax service response error：' + error)  // for debug
+    console.log('my-ajax service response error：' + error) // for debug
     return Promise.reject(error)
   }
 )

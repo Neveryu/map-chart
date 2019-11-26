@@ -8,8 +8,28 @@
           <td class="value">数量(件)</td>
         </tr>
       </thead>
-      <tbody class="tbody">
+      <tbody class="tbody" v-if="tableData.length > 0">
+        <!-- eslint-disable -->
         <template v-for="(item, index) of tableData" v-if="index < defaultShowNum">
+          <tr :key="index" align="center" v-if="item.children">
+            <td :rowspan="item.children.length" style="vertical-align: middle;">{{item.name}}</td>
+            <td>{{item.children[0].name}}</td>
+            <td class="value">{{item.children[0].number}}</td>
+          </tr>
+          <tr :key="index" align="center" v-else>
+            <td>{{item.name}}</td>
+            <td>-</td>
+            <td class="value">{{item.number}}</td>
+          </tr>
+          <template v-if="item.children">
+            <tr v-for="(item1, index1) of nextChildren(item.children)" :key="index1+item1.number" align="center">
+              <td>{{item1.name}}</td>
+              <td class="value">{{item1.number}}</td>
+            </tr>
+          </template>
+        </template>
+
+        <!-- <template v-for="(item, index) of tableData" v-if="index < defaultShowNum">
           <tr :key="index" align="center" v-if="item.children">
             <td :rowspan="item.children.length" style="vertical-align: middle;">{{item.name}}</td>
             <td>{{item.children[0].name}}</td>
@@ -40,10 +60,15 @@
             <td>{{item1.name}}</td>
             <td class="value">{{item1.number}}</td>
           </tr>
-        </template>
+        </template> -->
+      </tbody>
+      <tbody class="tbody" v-if="tableData.length === 0">
+        <tr>
+          <td colspan="3" style="text-align: center;">暂无数据</td>
+        </tr>
       </tbody>
     </table>
-    <div class="more" v-show="!showMore" @click="show">
+    <div class="more" v-show="tableData.length > defaultShowNum" @click="show">
       <p>查看全部</p>
     </div>
   </div>
@@ -62,23 +87,29 @@ export default {
   },
   data() {
     return {
-      defaultShowNum: 5,
-      showMore: false
+      defaultShowNum: 5
     }
   },
   methods: {
     show() {
-      this.showMore = true
+      this.defaultShowNum = 999
+    },
+    nextChildren(children) {
+      return children.filter((v, i) => {
+        return i > 0
+      })
     }
   },
   mounted() {
+    // console.log(this.tableData.length)
   }
 }
 </script>
 <style scoped lang="stylus">
 .main-wrapper
   box-sizing border-box
-  padding 6px
+  min-height 50px
+  padding 4px
   .table
     width 100%
     color #666
@@ -91,6 +122,7 @@ export default {
         line-height 30px
         font-size 14px
     .tbody
+      min-height 30px
       tr
         height 30px
         line-height 30px

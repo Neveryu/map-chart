@@ -1,6 +1,6 @@
 import Mock from 'mockjs'
 
-const count = 20
+const count = 10
 const List = []
 
 // overview-list-data
@@ -12,17 +12,16 @@ for(let i = 0; i < 10; i++) {
   mapData.push(Mock.mock('@natural(60, 799)'))
 }
 
-
 for(let i = 0; i < count; i++) {
   temp = Mock.mock({
     id: '@increment',
     name: '@city()',
     totalCount: '',
     rate: '',
-    theEnd: '@natural(0, 2000)',
-    untreating: '@natural(0, 500)',
-    audit: '@natural(0, 500)',
-    untreat: '@natural(0, 500)'
+    theEnd: '@natural(0, 999)',
+    untreating: '@natural(0, 300)',
+    audit: '@natural(0, 200)',
+    untreat: '@natural(0, 100)'
   })
   temp.totalCount = temp.theEnd + temp.untreating + temp.audit + temp.untreat
   temp.rate = (temp.theEnd * 100 / temp.totalCount).toFixed(2) + '%'

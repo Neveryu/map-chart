@@ -82,7 +82,8 @@ export default {
           },
           // 刻度文字
           axisLabel: {
-            color: '#666'
+            color: '#666',
+            interval: 0
           },
           // splitLine: {
           //   show: false

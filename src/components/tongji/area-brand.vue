@@ -74,7 +74,8 @@ export default {
           // 刻度文字
           axisLabel: {
             color: '#666',
-            fontSize: 10
+            fontSize: 10,
+            interval: 0
           },
           // splitLine: {
           //   show: false

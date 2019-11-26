@@ -33,11 +33,6 @@ export default {
       }
     }
   },
-  data() {
-    return {
-      xx: 'xx'
-    }
-  },
   methods: {
     initChart() {
       this.charts = echarts.init(this.$el)
@@ -52,10 +47,10 @@ export default {
           // }
         },
         grid: {
-          left: 90,
+          left: 55,
           top: 10,
-          bottom: 20,
-          right: 70
+          bottom: 12,
+          right: 50
         },
         xAxis: {
           type: 'value',
@@ -100,7 +95,8 @@ export default {
             // 刻度文字
             axisLabel: {
               color: '#666',
-              fontSize: 12
+              fontSize: 12,
+              rotate: 25
             },
             // 不显示每一行的刻度线
             splitLine: {
@@ -132,7 +128,7 @@ export default {
         ],
         series: [
           {
-            name: '办结率',
+            name: '胜率',
             data: this.xData,
             type: 'bar',
             barWidth: '10',

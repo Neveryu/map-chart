@@ -55,7 +55,7 @@ export default {
   top 0
   background #1895FF
   text-align center
-  z-index 999
+  z-index 99999999
   // padding 0 4%
   .back
     display inline-block

@@ -1,6 +1,6 @@
 <template>
   <div class="tongji-wrapper">
-    <m-header title="任务统计" :showBackApp="true"></m-header>
+    <m-header title="统计" :showBackApp="true"></m-header>
     <div class="container">
       <!-- 时间选择器 -->
       <div class="time">
@@ -37,7 +37,7 @@
         <!-- 统计任务概况 -->
         <div class="content-item">
           <div class="title">
-            <p class="name">任务数量趋势</p>
+            <p class="name">任务趋势(近7天)</p>
           </div>
           <div class="content">
             <trend width="100%" height="100%" :x-data="trendXData" :y-data="trendYData"></trend>
@@ -87,17 +87,17 @@
         <!-- 任务数量部门排行 -->
         <div class="content-item">
           <div class="title">
-            <p class="name">任务数量部门排行</p>
+            <p class="name">英雄使用场数排行</p>
           </div>
-          <div class="content">
-            <depart-sort width="100%" height="100%" :table-data="departData"></depart-sort>
+          <div class="content" style="height: auto;">
+            <depart-sort :table-data="departData"></depart-sort>
           </div>
         </div>
 
         <!-- 任务办结率部门排行TOP5 -->
         <div class="content-item">
           <div class="title">
-            <p class="name">办结率部门排行TOP5</p>
+            <p class="name">英雄胜率TOP5</p>
           </div>
           <div class="content" style="height: 160px;">
             <rate-sort width="100%" height="100%" :x-data="rateXData" :y-data="rateYData"></rate-sort>
@@ -111,7 +111,6 @@
 </template>
 
 <script>
-import { Indicator } from 'mint-ui'
 import MHeader from '@/components/m-header'
 import MBottom from '@/components/m-bottom'
 // 时间格式化工具
@@ -189,11 +188,11 @@ export default {
     },
     closeTouch() {
       // 阻止默认事件
-      document.getElementsByTagName('body')[0].addEventListener('touchmove', this.handler, {passive: false})
+      document.getElementsByTagName('body')[0].addEventListener('touchmove', this.handler, { passive: false })
     },
     openTouch() {
       // 打开默认事件
-      document.getElementsByTagName('body')[0].removeEventListener('touchmove', this.handler, {passive: false})
+      document.getElementsByTagName('body')[0].removeEventListener('touchmove', this.handler, { passive: false })
     },
     openStartPicker() {
       this.$refs.picker1.open()
@@ -230,59 +229,12 @@ export default {
         this.openTouch()
       }
     },
-    // 统计的后两个图表
-    _getDepartTop(startTime, endTime, topBy) {
-      Indicator.open({
-        text: '加载中...',
-        spinnerType: 'snake'
-      })
-      this.rateYData = []
-      this.rateXData = []
-      getDepartTop(startTime, endTime, topBy).then(resp => {
-        let respData = resp.data
-        // clone
-        let _respData = JSON.parse(JSON.stringify(resp.data))
-        this.departData = _respData.data.sort((a, b) => {
-          return b.all - a.all
-        })
-        console.log(this.departData)
-        // respData.data.forEach((v, i, _this) => {
-        //   this.rateYData.push(v.deptName)
-        //   this.rateXData.push(v.percentage)
-        // })
-        // 办结率部门前5
-        for(let i = 0; i < 5; i++) {
-          this.rateYData.push(respData.data[i].deptName)
-          var percentage = respData.data[i].percentage
-          this.rateXData.push(percentage.substring(0, percentage.length - 1))
-        }
-        Indicator.close()
-      })
-    },
-    // 任务类别&任务细分类别
-    _getCatelog(startTime, endTime) {
-      Indicator.open({
-        text: '加载中...',
-        spinnerType: 'snake'
-      })
-      this.catelogYData = []
-      this.catelogXData = []
-      getCatelog(startTime, endTime).then(resp => {
-        // console.log(resp)
-        let respData = resp.data
-        let srcCatelogData = respData.data
-        this.detailCatelogData = srcCatelogData
-        srcCatelogData.forEach((v, i, _this) => {
-          this.catelogYData.push(v.quesName)
-          this.catelogXData.push(v.all)
-        })
-        Indicator.close()
-      })
-    },
     getDataList() {
       getTongjiData().then(res => {
+        // 任务数量趋势
         this.trendXData = res.date
         this.trendYData = res.total
+        // 各状态任务趋势对比
         this.trendCompareData = {
           // 已办结
           'step4': res.theEnd,
@@ -293,9 +245,39 @@ export default {
           // 未受理
           'step1': res.untreat
         }
+        // 任务区域分布
         this.areaXData = res.areaXData
         this.areaYData = res.areaYData
-        this.detailCatelogData = res.typeDetail
+        // 任务类别分布
+        let catelogData = res.catelogData
+        // 任务细分类别
+        this.detailCatelogData = catelogData
+        catelogData.forEach((v, i) => {
+          this.catelogXData.push(v.number)
+          this.catelogYData.push(v.name)
+        })
+        // 任务数量部门排行
+        let _departData = JSON.parse(JSON.stringify(res.departData))
+        let _departRateData = JSON.parse(JSON.stringify(res.departData))
+        _departData = _departData.sort((a, b) => {
+          return b.number - a.number
+        })
+        this.departData = _departData
+        // 办结率排行TOP5
+        _departRateData = _departRateData.sort((a, b) => {
+          return b.percentage - a.percentage
+        })
+        if(res.departData.length > 5) {
+          for(let i = 0; i < 5; i++) {
+            this.rateYData.push(_departRateData[i].departName)
+            this.rateXData.push(_departRateData[i].percentage)
+          }
+        } else {
+          for(let i = 0; i < res.departData.length; i++) {
+            this.rateYData.push(_departRateData[i].departName)
+            this.rateXData.push(_departRateData[i].percentage)
+          }
+        }
       })
     }
   },

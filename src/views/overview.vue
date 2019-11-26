@@ -244,7 +244,8 @@ export default {
         this.departData = resp.departData
         this.departData = this.departData.reverse()
       }).catch(err => {
-
+        Indicator.close()
+        console.log(err.errorMessage)
       })
     }
   },

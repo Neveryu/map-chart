@@ -52,9 +52,9 @@ export default {
           }
         },
         grid: {
-          left: 95,
+          left: 42,
           top: 10,
-          bottom: 30,
+          bottom: 25,
           right: 15
         },
         xAxis: {

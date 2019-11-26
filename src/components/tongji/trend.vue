@@ -54,7 +54,7 @@ export default {
           left: 35,
           top: 30,
           bottom: 25,
-          right: 15
+          right: 20
         },
         xAxis: {
           type: 'category',
@@ -71,8 +71,11 @@ export default {
           },
           // 刻度文字
           axisLabel: {
-            color: '#666'
+            color: '#666',
+            interval: 0,
+            rotate: 0
           },
+          nameRotate: '35%',
           // splitLine: {
           //   show: false
           // },
