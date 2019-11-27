@@ -41,47 +41,45 @@ export default [{
       areaXData,
       areaYData: mapData,
       catelogData: [
-      {
-        name: '数学',
-        number: 120,
-        children: [{
-          name: '高数',
-          number: 60
-        }, {
-          name: '线性代数',
-          number: 60
-        }]
-      },
-      {
-        name: '语文',
-        number: 100
-      },
-      {
-        name: '英语',
-        number: 88,
-        children: [
-          {
+        {
+          name: '数学',
+          number: 120,
+          children: [{
+            name: '高数',
+            number: 60
+          }, {
+            name: '线性代数',
+            number: 60
+          }]
+        },
+        {
+          name: '语文',
+          number: 100
+        },
+        {
+          name: '英语',
+          number: 88,
+          children: [{
             name: '四级',
             number: 50
-          },
-          {
+          }, {
             name: '六级',
             number: 111
-          }
-        ]
-      },
-      {
-        name: '化学',
-        number: 77
-      },
-      {
-        name: '物理',
-        number: 110
-      },
-      {
-        name: '生物',
-        number: 100
-      }],
+          }]
+        },
+        {
+          name: '化学',
+          number: 77
+        },
+        {
+          name: '物理',
+          number: 110
+        },
+        {
+          name: '生物',
+          number: 100
+        }
+      ],
       departData
     }
     return {

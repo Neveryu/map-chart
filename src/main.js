@@ -18,6 +18,7 @@ if(process.env.NODE_ENV === 'production') {
   mockXHR()
 }
 
+/* eslint-disable */
 // 按需引入部分组件
 import { Button, DatetimePicker, Popup } from 'mint-ui'
 Vue.component(Button.name, Button)
