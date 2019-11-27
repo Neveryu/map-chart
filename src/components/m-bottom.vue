@@ -40,7 +40,7 @@ export default {
   box-shadow: 0px -2px 10px 1px rgba(211,229,244,1)
   z-index 999
   background-color #fff
-  padding-bottom 10px
+  padding-bottom 12px
   .menu
     display inline-block
     flex 1

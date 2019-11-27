@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import OverView from '@/views/overview'
 import Map from '@/views/map'
 import Tongji from '@/views/tongji'
+import Search from '@/views/search'
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,11 @@ const routes = [
     path: '/tongji',
     name: 'tongji',
     component: Tongji
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: Search
   },
   {
     path: '/about',

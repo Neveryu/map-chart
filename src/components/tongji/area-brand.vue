@@ -110,6 +110,14 @@ export default {
             data: this.yData,
             type: 'bar',
             barWidth: '10',
+            label: {
+              normal: {
+                show: true,
+                position: 'top',
+                color: '#f56',
+                fontSize: 12
+              }
+            },
             itemStyle: {
               emphasis: {
                 barBorderRadius: 30

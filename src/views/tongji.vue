@@ -303,7 +303,7 @@ export default {
     // height 100vh
     // top 0
     // left 0
-    padding-bottom 70px
+    padding-bottom 80px
     // overflow scroll
     .time
       margin-top 10px

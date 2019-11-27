@@ -107,7 +107,15 @@ export default {
           {
             data: this.xData,
             type: 'bar',
-            barWidth: '10',
+            barWidth: '12',
+            label: {
+              normal: {
+                show: true,
+                position: 'insideRight',
+                color: '#fff',
+                fontSize: 12
+              }
+            },
             itemStyle: {
               emphasis: {
                 barBorderRadius: 30

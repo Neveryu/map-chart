@@ -59,11 +59,13 @@ module.exports = {
       }
     }
   },
-  pwa: {
-    msTileColor: '#000',
-    appleMobileWebAppCapable: 'yes'
-  },
   chainWebpack(config) {
 
-  }
+  },
+  pwa: {
+    backgroundColor: '#fff',
+    msTileColor: '#000000',
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: '#1895ff'
+  },
 }

@@ -125,6 +125,12 @@ export default {
                   color: '#00C051'
                 }
               }
+            },
+            label: {
+              normal: {
+                show: true,
+                position: 'top'
+              }
             }
           },
           {
@@ -137,6 +143,12 @@ export default {
                 lineStyle: {
                   color: '#FED218'
                 }
+              }
+            },
+            label: {
+              normal: {
+                show: true,
+                position: 'top'
               }
             }
           },
@@ -151,6 +163,12 @@ export default {
                   color: '#1895FF'
                 }
               }
+            },
+            label: {
+              normal: {
+                show: true,
+                position: 'top'
+              }
             }
           },
           {
@@ -163,6 +181,12 @@ export default {
                 lineStyle: {
                   color: '#F47A53'
                 }
+              }
+            },
+            label: {
+              normal: {
+                show: true,
+                position: 'top'
               }
             }
           }

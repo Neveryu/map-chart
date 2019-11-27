@@ -107,13 +107,19 @@ export default {
           name: '任务数量',
           data: this.yData,
           type: 'line',
-          smooth: true,
+          smooth: false,
           itemStyle: {
             normal: {
               color: '#85C7FF',
               lineStyle: {
                 color: '#85C7FF'
               }
+            }
+          },
+          label: {
+            normal: {
+              show: true,
+              position: 'top'
             }
           },
           areaStyle: {}

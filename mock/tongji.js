@@ -8,10 +8,11 @@ const departNameArr = ['马可波罗', '程咬金', '狄仁杰', '甄姬', '鲁�
 const departData = []
 
 List = Mock.mock({
-  total: ['@natural(0, 99)', '@natural(0, 99)', '@natural(0, 99)', '@natural(0, 99)', '@natural(0, 99)', '@natural(0, 99)', '@natural(0, 99)'],
-  untreat: ['@natural(0, 49)', '@natural(0, 49)', '@natural(0, 49)', '@natural(0, 49)', '@natural(0, 49)', '@natural(0, 49)', '@natural(0, 49)'],
-  audit: ['@natural(0, 39)', '@natural(0, 39)', '@natural(0, 39)', '@natural(0, 39)', '@natural(0, 39)', '@natural(0, 39)', '@natural(0, 39)'],
-  untreating: ['@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)', '@natural(0, 29)']
+  total: ['@natural(49, 89)', '@natural(49, 89)', '@natural(49, 89)', '@natural(49, 89)', '@natural(49, 89)', '@natural(49, 89)', '@natural(49, 89)'],
+  theEnd: ['@natural(49, 99)', '@natural(49, 99)', '@natural(49, 99)', '@natural(49, 99)', '@natural(49, 99)', '@natural(49, 99)', '@natural(49, 99)'],
+  untreat: ['@natural(3, 19)', '@natural(3, 19)', '@natural(3, 19)', '@natural(3, 19)', '@natural(3, 19)', '@natural(3, 19)', '@natural(3, 19)'],
+  audit: ['@natural(5, 39)', '@natural(5, 39)', '@natural(5, 39)', '@natural(5, 39)', '@natural(5, 39)', '@natural(5, 39)', '@natural(5, 39)'],
+  untreating: ['@natural(29, 59)', '@natural(29, 59)', '@natural(29, 59)', '@natural(29, 59)', '@natural(29, 59)', '@natural(29, 59)', '@natural(29, 59)']
 })
 
 for(let i = 0; i < count; i++) {
@@ -35,6 +36,7 @@ export default [{
     let data = {
       date: ['10-01', '10-02', '10-03', '10-04', '10-05', '10-06', '10-07'],
       total: List.total,
+      theEnd: List.theEnd,
       untreat: List.untreat,
       audit: List.audit,
       untreating: List.untreating,

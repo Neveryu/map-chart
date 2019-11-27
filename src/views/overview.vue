@@ -80,7 +80,7 @@
         <!-- 各部门任务概况 -->
         <div class="depart">
           <div class="title">
-            <p class="name">各部门任务概况</p>
+            <p class="name">各地区任务概况</p>
           </div>
           <div class="content" v-for="(item, index) of departData" :key="index">
             <p class="name">{{item.name}}</p>
@@ -267,7 +267,7 @@ export default {
     // height 100vh
     // top 0
     // left 0
-    padding-bottom 50px
+    padding-bottom 62px
     // overflow scroll
     .time
       margin-top 10px
