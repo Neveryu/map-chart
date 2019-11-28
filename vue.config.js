@@ -63,9 +63,14 @@ module.exports = {
 
   },
   pwa: {
-    backgroundColor: '#fff',
+    themeColor: '#1895ff',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
-    appleMobileWebAppStatusBarStyle: 'black'
+    appleMobileWebAppStatusBarStyle: 'red',
+    manifestOptions: {
+      theme_color: '#1895ff',
+      start_url: '/map-chart/',
+      background_color: '#fff'
+    }
   }
 }
