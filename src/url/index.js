@@ -4,7 +4,9 @@ const API_URL = {
   // 任务在地图上的分布
   getArea: '/mobile/getArea',
   // 统计的数据
-  getTongji: '/mobile/getTongji'
+  getTongji: '/mobile/getTongji',
+  // task-list
+  getTaskList: '/mobile/getTaskList'
 }
 
 export default API_URL

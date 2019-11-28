@@ -2,8 +2,9 @@ import Mock from 'mockjs'
 
 import task from './task'
 import tongji from './tongji'
+import tasklist from './task-list'
 
-const mocks = [...task, ...tongji]
+const mocks = [...task, ...tongji, ...tasklist]
 
 // const mocks = []
 

@@ -4,6 +4,7 @@ import OverView from '@/views/overview'
 import Map from '@/views/map'
 import Tongji from '@/views/tongji'
 import Search from '@/views/search'
+import TaskList from '@/views/task-list'
 
 Vue.use(VueRouter)
 
@@ -31,6 +32,11 @@ const routes = [
     path: '/search',
     name: 'search',
     component: Search
+  },
+  {
+    path: '/task-list',
+    name: 'task-list',
+    component: TaskList 
   },
   {
     path: '/about',
