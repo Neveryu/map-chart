@@ -5,6 +5,7 @@ import Map from '@/views/map'
 import Tongji from '@/views/tongji'
 import Search from '@/views/search'
 import TaskList from '@/views/task-list'
+import TaskDetail from '@/views/task-detail'
 
 Vue.use(VueRouter)
 
@@ -36,7 +37,12 @@ const routes = [
   {
     path: '/task-list',
     name: 'task-list',
-    component: TaskList 
+    component: TaskList
+  },
+  {
+    path: '/task-detail',
+    name: 'task-detail',
+    component: TaskDetail
   },
   {
     path: '/about',

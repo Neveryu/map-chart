@@ -33,8 +33,8 @@
                 <span class="value">{{_transStatus(item.status)}}</span>
               </span>
               <span class="inline-wrapper">
-                <span class="name name2">舆情性质</span>
-                <span class="value value2">{{item.name}}</span>
+                <span class="name name2">任务性质</span>
+                <span class="value value2">{{_transProperty(item.name)}}</span>
               </span>
             </p>
             <p>
@@ -61,7 +61,7 @@
 <script>
 import MHeader from '@/components/m-header'
 import { getList } from '@/api/task-list'
-// import { search } from '@/api/search'
+import { Indicator } from 'mint-ui'
 import { formatTime2 } from '@/util/date'
 export default {
   name: 'TaskList',
@@ -86,19 +86,35 @@ export default {
   },
   methods: {
     // 从地图进来
-    _getList(keyWords, gradeId, articleStatus, page, size, deptId, quesId, pid) {
-      getList(keyWords, gradeId, articleStatus, page, size, deptId, quesId, pid).then(resp => {
+    _getList(page) {
+      Indicator.open({
+        spinnerType: 'fading-circle'
+      })
+      getList(page).then(resp => {
         this.currentPage = resp.page
         this.u_currentPage = resp.page
         this.totalPage = Math.ceil(resp.totalNumber / this.size)
         this.listData = resp.list
+        Indicator.close()
       })
     },
     // 时间转换
     _transTime(stamp) {
       return formatTime2(new Date(stamp))
     },
-    // 处置状态装换
+    // 任务性质转换
+    _transProperty(value) {
+      if(value === 1) {
+        return '一般'
+      }
+      if(value === 2) {
+        return '重要'
+      }
+      if(value === 3) {
+        return '紧急'
+      }
+    },
+    // 处置状态转换
     _transStatus(value) {
       if(value === 0) {
         return '未受理'
@@ -109,7 +125,7 @@ export default {
       if(value === 2) {
         return '待审核'
       }
-      if(value === 5) {
+      if(value === 3) {
         return '已办结'
       } else {
         return '未知'
@@ -118,30 +134,30 @@ export default {
     // 翻页
     _first() {
       if(this.currentPage > 1) {
-        this._getList(this.keyWords, this.gradeId, this.articleStatus, 1, this.size, this.deptId, this.quesId, this.pid)
+        this._getList(1)
       }
     },
     _prev() {
       if(this.currentPage > 1) {
         this.currentPage--
-        this._getList(this.keyWords, this.gradeId, this.articleStatus, this.currentPage, this.size, this.deptId, this.quesId, this.pid)
+        this._getList(this.currentPage)
       }
     },
     _next() {
       if(this.currentPage < this.totalPage) {
         this.currentPage++
-        this._getList(this.keyWords, this.gradeId, this.articleStatus, this.currentPage, this.size, this.deptId, this.quesId, this.pid)
+        this._getList(this.currentPage)
       }
     },
     _last() {
       if(this.currentPage < this.totalPage) {
-        this._getList(this.keyWords, this.gradeId, this.articleStatus, this.totalPage, this.size, this.deptId, this.quesId, this.pid)
+        this._getList(this.totalPage)
       }
     },
     // 自定义输入跳转页码
     goPage() {
       if(this.u_currentPage > 0 && (this.totalPage >= this.u_currentPage)) {
-        this._getList(this.keyWords, this.gradeId, this.articleStatus, this.currentPage, this.size, this.deptId, this.quesId, this.pid)
+        this._getList(this.u_currentPage)
       } else {
         this.u_currentPage = this.currentPage
       }
@@ -160,12 +176,11 @@ export default {
     let _from = _query.from
     if(_from === 'map') {
       this.deptId = _query.deptId
-      this._getList(this.currentPage, this.size, this.deptId)
+      this._getList(this.currentPage)
     }
     if(_from === 'overview') {
       this.deptId = _query.deptId
-      this.articleStatus = _query.articleStatus
-      this._getList(this.keyWords, this.gradeId, this.articleStatus, this.currentPage, this.size, this.deptId)
+      this._getList(this.currentPage)
     }
     if(_from === 'search') {
       this.keyWords = _query.keyWords
@@ -255,7 +270,7 @@ export default {
         .btn
           display inline-block
           height 20px
-          width 40px
+          width 38px
           background-position center
           background-repeat no-repeat
           background-size contain
@@ -268,4 +283,6 @@ export default {
           background-image url('~@/assets/images/icon-next.png')
         .last
           background-image url('~@/assets/images/icon-last.png')
+        .mint-button--small
+          padding 0 10px
 </style>

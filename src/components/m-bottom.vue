@@ -38,7 +38,7 @@ export default {
   width 100%
   height 48px
   box-shadow: 0px -2px 10px 1px rgba(211,229,244,1)
-  z-index 999
+  z-index 9999999
   background-color #fff
   padding-bottom 12px
   .menu

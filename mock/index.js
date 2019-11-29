@@ -1,4 +1,5 @@
 import Mock from 'mockjs'
+import { param2Obj } from '../src/util'
 
 import task from './task'
 import tongji from './tongji'
@@ -30,7 +31,8 @@ export function mockXHR() {
         const { body, type, url } = options
         result = respond({
           method: type,
-          body: JSON.parse(body)
+          body: JSON.parse(body),
+          query: param2Obj(url)
         })
       } else {
         result = respond

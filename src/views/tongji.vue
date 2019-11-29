@@ -322,7 +322,7 @@ export default {
           height 35px
           line-height 35px
           padding-left 10px
-          background url('/static/images/icon-time.png') left center no-repeat
+          background url('~@/assets/images/icon-time.png') left center no-repeat
           background-size 14px
       .split
         display inline-block
@@ -340,7 +340,7 @@ export default {
           height 35px
           line-height 35px
           padding-left 10px
-          background url('/static/images/icon-time.png') left center no-repeat
+          background url('~@/assets/images/icon-time.png') left center no-repeat
           background-size 14px
     .main
       margin-top 15px;

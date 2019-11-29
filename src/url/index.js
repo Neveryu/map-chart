@@ -6,7 +6,9 @@ const API_URL = {
   // 统计的数据
   getTongji: '/mobile/getTongji',
   // task-list
-  getTaskList: '/mobile/getTaskList'
+  getTaskList: '/mobile/getTaskList',
+  // 任务详情
+  getTaskDetail: '/mobile/getDetail'
 }
 
 export default API_URL
