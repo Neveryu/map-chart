@@ -16,7 +16,7 @@
             <p>
               <span class="inline-wrapper1">
                 <span class="name">任务性质：</span>
-                <span class="value">{{gradeName}}</span>
+                <span class="value">{{_transProperty(gradeName)}}</span>
               </span>
               <span class="inline-wrapper2">
                 <span class="name name2">发起时间：</span>
@@ -37,7 +37,7 @@
                 <span class="name" v-if="index === 0">添加任务</span>
               </div>
               <div class="right">
-                <p class="time">{{_formatTime(item.created_at)}}</p>
+                <p class="time">{{item.created_at}}</p>
                 <p class="status">
                   <span>处理状态：</span>
                   <span class="status-value">未处理</span>
@@ -59,7 +59,7 @@
                 <span class="name" v-if="index === 0">任务处理</span>
               </div>
               <div class="right">
-                <p class="time">{{_formatTime(item.created_at)}}</p>
+                <p class="time">{{item.created_at}}</p>
                 <p class="status">
                   <span>处理状态：</span>
                   <span class="status-value">处理中</span>
@@ -81,7 +81,7 @@
                 <span class="name" v-if="index === 0">任务审核</span>
               </div>
               <div class="right">
-                <p class="time">{{_formatTime(item.created_at)}}</p>
+                <p class="time">{{item.created_at}}</p>
                 <p class="status">
                   <span>处理状态：</span>
                   <span class="status-value">申请归档</span>
@@ -103,7 +103,7 @@
                 <span class="name" v-if="index === 0">任务完结</span>
               </div>
               <div class="right">
-                <p class="time">{{_formatTime(item.created_at)}}</p>
+                <p class="time">{{item.created_at}}</p>
                 <p class="status">
                   <span>处理状态：</span>
                   <span class="status-value">已完成</span>
@@ -153,6 +153,18 @@ export default {
     }
   },
   methods: {
+    // 任务性质转换
+    _transProperty(value) {
+      if(value === 1) {
+        return '一般'
+      }
+      if(value === 2) {
+        return '重要'
+      }
+      if(value === 3) {
+        return '紧急'
+      }
+    },
     _getDetail(id) {
       getDetail(id).then(resp => {
         this.title = resp.title

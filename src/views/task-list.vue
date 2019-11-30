@@ -15,7 +15,7 @@
             </p>
             <p>
               <span class="name">标题</span>
-              <span class="value" @click="goDetail(item.id)">{{item.title}}</span>
+              <span class="value" @click="goDetail(item.id)" style="color: #1895ff; text-decoration: underline;">{{item.title}}</span>
             </p>
             <p>
               <span class="inline-wrapper">
@@ -34,12 +34,12 @@
               </span>
               <span class="inline-wrapper">
                 <span class="name name2">任务性质</span>
-                <span class="value value2">{{_transProperty(item.name)}}</span>
+                <span class="value value2">{{_transProperty(item.desc)}}</span>
               </span>
             </p>
             <p>
               <span class="name">问题分类</span>
-              <span class="value">{{item.pname}}</span>
+              <span class="value">{{item.qtype}}</span>
             </p>
           </div>
         </div>

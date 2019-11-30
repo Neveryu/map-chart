@@ -217,10 +217,7 @@ export default {
       this.$refs.picker2.close()
       this.openTouch()
       // 改变时间获取数据
-      this._getStatusList()
-      this._getArea(this.startTime, this.endTime)
-      this._getCatelog(this.startTime, this.endTime)
-      this._getDepartTop(this.startTime, this.endTime, this.topBy)
+      this.getDataList()
     },
     handleVisibleChange(isVisible) {
       if(isVisible) {
