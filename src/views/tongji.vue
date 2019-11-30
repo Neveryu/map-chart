@@ -207,10 +207,7 @@ export default {
       this.$refs.picker1.close()
       this.openTouch()
       // 改变时间获取数据
-      this._getStatusList()
-      this._getArea(this.startTime, this.endTime)
-      this._getCatelog(this.startTime, this.endTime)
-      this._getDepartTop(this.startTime, this.endTime, this.topBy)
+      this.getDataList()
     },
     handleEndChange(value) {
       this.endTime = formatTime(value)
@@ -227,6 +224,10 @@ export default {
       }
     },
     getDataList() {
+      this.catelogXData = []
+      this.catelogYData = []
+      this.rateYData = []
+      this.rateXData = []
       getTongjiData().then(res => {
         // 任务数量趋势
         this.trendXData = res.date
@@ -260,7 +261,7 @@ export default {
           return b.number - a.number
         })
         this.departData = _departData
-        // 办结率排行TOP5
+        // 胜率排行TOP5
         _departRateData = _departRateData.sort((a, b) => {
           return b.percentage - a.percentage
         })

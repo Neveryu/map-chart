@@ -233,20 +233,20 @@ export default {
               vertical-align top
               width 59%
             span.name
-              position absolute
+              // position absolute
               display inline-block
               line-height 1.5
               color #888
-              font-size 12px
-              width 60px
+              font-size 14px
+              // width 60px
             span.name2
-              left 40%
+              // left 45%
             span.value
               display inline-block
               color #333
               line-height 1.2
-              font-size 12px
-              margin-left 60px
+              font-size 14px
+              // margin-left 60px
         .flow
           border-top 1px solid #eee
           padding-top 10px
