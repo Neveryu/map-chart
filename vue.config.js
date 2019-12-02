@@ -24,6 +24,12 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
+  /**
+   * BASE_URL - 会和 vue.config.js 中的 publicPath 选项相符，即你的应用会部署到的基础路径
+   */
+  /**
+   * NODE_ENV - 会是 "development"、"production"或"test"中的一个。具体的值取决于应用运行的模式
+   */
   publicPath: process.env.NODE_ENV === 'production' ? '/map-chart/' : '/',
   outputDir: 'dist',
   assetsDir: 'static',
@@ -63,14 +69,14 @@ module.exports = {
 
   },
   pwa: {
-    themeColor: '#1895ff',
-    msTileColor: '#000000',
+    themeColor: 'red',
+    msTileColor: 'red',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'red',
     manifestOptions: {
-      theme_color: '#1895ff',
+      theme_color: 'red',
       start_url: '/map-chart/',
-      background_color: '#fff'
+      background_color: 'red'
     }
   }
 }

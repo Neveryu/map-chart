@@ -18,6 +18,8 @@
                 <span class="name">任务性质：</span>
                 <span class="value">{{_transProperty(gradeName)}}</span>
               </span>
+            </p>
+            <p>
               <span class="inline-wrapper2">
                 <span class="name name2">发起时间：</span>
                 <span class="value value2">{{time}}</span>
@@ -220,18 +222,8 @@ export default {
           &:first-child
             border-top none
           p
-            position relative
+            // position relative
             padding 6px 0
-            span.inline-wrapper1
-              display: inline-block
-              max-width: 40%
-              vertical-align top
-              width 39%
-            span.inline-wrapper2
-              display: inline-block
-              max-width: 60%
-              vertical-align top
-              width 59%
             span.name
               // position absolute
               display inline-block
