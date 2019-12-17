@@ -1,5 +1,6 @@
 import jsonp from '@/util/jsonp'
 
+// 能看到这里，我只能说你赢了
 export function getHotTag() {
   const url = 'https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg'
   const options = {

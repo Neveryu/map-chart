@@ -23,7 +23,7 @@
             :autoFill="false"
             :distanceIndex="3">
             <ul class="result-list-wrapper">
-              <li class="result-item" v-for="item of resultList">{{ item.albumname }}</li>
+              <li @click="clickItem(item)" class="result-item" v-for="(item, index) of resultList">{{ item.songname }}</li>
             </ul>
           </mt-loadmore>
         </div>
@@ -52,6 +52,9 @@ export default {
     }
   },
   methods: {
+    clickItem(item) {
+      alert(1)
+    },
     loadBottom() {
       this.currentPage++
       search(this.searchName, this.currentPage, this.showSinger, this.pageSize).then(res => {
@@ -63,12 +66,13 @@ export default {
     },
     addLabel(value) {
       this.searchName = value
+      this.doSearch()
     },
     // 搜索按钮
     doSearch() {
       this.resultList = []
       if(this.searchName.length < 1) {
-        return 
+        return false
       }
       search(this.searchName, this.currentPage, this.showSinger, this.pageSize).then(res => {
         res.data.song.list.forEach(item => {
