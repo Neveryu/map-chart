@@ -19,11 +19,19 @@ for(let i = 0; i < count; i++) {
   departData.push(Mock.mock({
     id: '@increment',
     departName: departNameArr[i],
-    rate: '@float(0, 30, 2, 2)',
+    // rate: '@float(0, 30, 2, 2)',
     number: '@natural(0, 199)',
     percentage: '@natural(39, 79)'
   }))
 }
+
+let allNumber = 0
+departData.forEach(item => {
+  allNumber += item.number
+})
+departData.forEach(item => {
+  item.rate = (item.number * 100 / allNumber).toFixed(2) + '%'
+})
 
 export default [{
   url: '/mobile/getTongji',

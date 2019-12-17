@@ -3,23 +3,37 @@
     <m-header title="高级查询" :showSearch="false" :showBack="true"></m-header>
     <div class="container">
       <div class="input-wrapper">
-        <input type="text" class="search" v-model="searchName" placeholder="输入关键字... ">
-        <!-- <div class="btn-search" @click="doSearch(searchName)"></div> -->
-        <div class="btn-search"></div>
+        <input type="text" class="search" v-model.trim="searchName" placeholder="输入关键字... ">
+        <div class="btn-search" @click="doSearch"></div>
       </div>
       <div class="hot-wrapper">
         <span class="title">热词</span>
         <ul class="hotlabel-wrapper">
-          <li class="hot-item" v-for="(item, index) of hotLabel" :key="index" @click="addLabel(item)">{{item}}</li>
+          <li class="hot-item" v-for="(item, index) of hotLabel" :key="index" @click="addLabel(item.k)">{{item.k}}</li>
         </ul>
       </div>
       <hr class="split">
+      <div class="result-wrapper">
+        <span class="title">搜索结果</span>
+        <div class="mt-loadmore-wrapper">
+          <mt-loadmore
+            ref="loadmore"
+            :bottom-method="loadBottom"
+            :bottom-all-loaded="allLoaded"
+            :autoFill="false">
+            <ul class="result-list-wrapper">
+              <li class="result-item" v-for="item of resultList">{{ item.albumname }}</li>
+            </ul>
+          </mt-loadmore>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 // import { Indicator, Toast } from 'mint-ui'
 import MHeader from '@/components/m-header'
+import { getHotTag, search } from '@/api/search'
 export default {
   name: 'search',
   components: {
@@ -28,20 +42,50 @@ export default {
   data() {
     return {
       searchName: '',
-      hotLabel: []
+      hotLabel: [],
+      resultList: [],
+      pageSize: 20,
+      showSinger: true,
+      currentPage: 1,
+      allLoaded: false
     }
   },
   methods: {
+    loadBottom() {
+      this.currentPage++
+      search(this.searchName, this.currentPage, this.showSinger, this.pageSize).then(res => {
+        res.data.song.list.forEach(item => {
+          this.resultList.push(item)
+        })
+        this.$refs.loadmore.onBottomLoaded()
+      })
+    },
     addLabel(value) {
       this.searchName = value
     },
     // 搜索按钮
     doSearch() {
-      // todo
+      this.resultList = []
+      if(this.searchName.length < 1) {
+        return 
+      }
+      search(this.searchName, this.currentPage, this.showSinger, this.pageSize).then(res => {
+        res.data.song.list.forEach(item => {
+          this.resultList.push(item)
+        })
+      })
     },
     // 获取有哪些热词
     _getHotTag() {
       // todo
+      getHotTag().then(res => {
+        // this.hotLabel = res.data.hotkey
+        if(res.data.hotkey && res.data.hotkey.length > 10) {
+          this.hotLabel = res.data.hotkey.slice(0, 10)
+        } else {
+          this.hotLabel = res.data.hotkey || []
+        }
+      })
     },
     goList(keyWords, gradeId, articleStatus, page, size, deptId, startTime, endTime, quesId, pid) {
       this.$router.push({
@@ -72,6 +116,9 @@ export default {
 .search-wrapper
   .container
     padding 0 4%
+    // position fixed
+    left 0
+    right 0
     .input-wrapper
       position relative
       margin-top 10px
@@ -101,15 +148,32 @@ export default {
         background-repeat no-repeat
         background-position right 15px center
         background-size 50%
+    .result-wrapper
+      margin-top 10px
+      .title
+        font-size 14px
+        color red
+      .mt-loadmore-wrapper
+        height calc(100vh - 300px)
+        overflow-y auto
+        margin-top 10px
+        .result-list-wrapper
+          .result-item
+            color #888
+            padding 6px 0
+            font-size 16px
+            overflow hidden
+            text-overflow ellipsis
+            white-space nowrap
     .hot-wrapper
       margin-top 10px
       .title
-        font-size 12px
+        font-size 14px
         color #666
       .hotlabel-wrapper
+        display inline-flex
+        flex-wrap wrap
         .hot-item
-          display inline-block
-          width 20%
           height 30px
           line-height 30px
           border-radius 30px
@@ -117,8 +181,10 @@ export default {
           background #f7f7f7
           text-align center
           color #888
-          font-size 12px
-          margin-right 15px
+          font-size 14px
+          // margin-right 15px
+          padding 1px 12px
+          margin-right 10px
     .split
       border 1px solid #eee
       transform scale3d(1, 0.5, 1)

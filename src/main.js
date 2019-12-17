@@ -20,10 +20,11 @@ if(process.env.NODE_ENV === 'production') {
 
 /* eslint-disable */
 // 按需引入部分组件
-import { Button, DatetimePicker, Popup } from 'mint-ui'
+import { Button, DatetimePicker, Popup, Loadmore } from 'mint-ui'
 Vue.component(Button.name, Button)
 Vue.component(DatetimePicker.name, DatetimePicker)
 Vue.component(Popup.name, Popup)
+Vue.component(Loadmore.name, Loadmore)
 
 /* eslint-disable */
 import popupTop from './custom-plugin/popup-top'

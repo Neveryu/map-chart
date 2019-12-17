@@ -30,8 +30,8 @@
 同时，它也是一个很好的学习项目，包含了一些常见问题的解决方案，比如：前端数据模拟，数据可视化，PWA，移动端地图，图表等等。
 
 ## 截图
-<!-- ![](./screenshot/screenshot-1.png) -->
-<!-- ![](./screenshot/screenshot-2.png) -->
+![](./screenshot/screenshot-1.png)
+![](./screenshot/screenshot-2.png)
 
 ## Project setup
 ```
