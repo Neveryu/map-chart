@@ -3,7 +3,7 @@
     <m-header title="高级查询" :showSearch="false" :showBack="true"></m-header>
     <div class="container">
       <div class="input-wrapper">
-        <input type="text" class="search" v-model.trim="searchName" placeholder="输入关键字... ">
+        <input type="text" class="search" v-model.trim="searchName" @keyup.enter="doSearch" placeholder="输入关键字... ">
         <div class="btn-search" @click="doSearch"></div>
       </div>
       <div class="hot-wrapper">
@@ -20,7 +20,8 @@
             ref="loadmore"
             :bottom-method="loadBottom"
             :bottom-all-loaded="allLoaded"
-            :autoFill="false">
+            :autoFill="false"
+            :distanceIndex="3">
             <ul class="result-list-wrapper">
               <li class="result-item" v-for="item of resultList">{{ item.albumname }}</li>
             </ul>
@@ -154,13 +155,15 @@ export default {
         font-size 14px
         color red
       .mt-loadmore-wrapper
-        height calc(100vh - 300px)
+        height calc(100vh - 310px)
         overflow-y auto
         margin-top 10px
+        &::-webkit-scrollbar
+          display none  // Safari and Chrome
         .result-list-wrapper
           .result-item
             color #888
-            padding 6px 0
+            padding 10px
             font-size 16px
             overflow hidden
             text-overflow ellipsis
