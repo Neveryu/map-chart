@@ -23,7 +23,7 @@
 
 ## 预览
 <p align="center">
-![](./public/img/page-qr.png)
+  <img src="./public/img/page-qr.png" alt="扫码预览" title="扫码预览">
 </p>
 
 在线体验：[https://git.io/JeMCZ](https://neveryu.github.io/map-chart/index.html)
