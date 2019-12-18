@@ -22,6 +22,10 @@
 </p>
 
 ## 预览
+<p align="center">
+![](./public/img/page-qr.png)
+</p>
+
 在线体验：[https://git.io/JeMCZ](https://neveryu.github.io/map-chart/index.html)
 
 ## 简介
@@ -36,6 +40,8 @@
 ## Project setup
 ```
 npm install
+or
+npm install --registry=https://registry.npm.taobao.org
 ```
 
 ### Compiles and hot-reloads for development
@@ -82,7 +88,7 @@ Modern browsers and Internet Explorer 10+.
 
 ## License
 
-[MIT](https://github.com/Neveryu/vue-cms/blob/master/LICENSE)
+[MIT](https://github.com/Neveryu/map-chart/blob/master/LICENSE)
 
 Copyright (c) 2019-present NeverYu
 
