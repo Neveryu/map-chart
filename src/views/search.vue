@@ -29,9 +29,23 @@
         </div>
       </div>
     </div>
+
+    <!-- 图片弹窗 -->
+    <transition name="normal"
+                @enter="enter"
+                @after-enter="afterEnter"
+                @leave="leave"
+                @after-leave="afterLeave"
+    >
+      <div class="img-pop" v-show="isView" ref="imgWrapper">
+        <img class="img" :src="imgSrc" alt="">
+        <mt-button class="close-btn" type="danger" @click="closeImg">关闭</mt-button>
+      </div>
+    </transition>
   </div>
 </template>
 <script>
+import animations from 'create-keyframe-animation'
 // import { Indicator, Toast } from 'mint-ui'
 import MHeader from '@/components/m-header'
 import { getHotTag, search } from '@/api/search'
@@ -42,6 +56,8 @@ export default {
   },
   data() {
     return {
+      isView: false,
+      imgSrc: '',
       searchName: '',
       hotLabel: [],
       resultList: [],
@@ -52,14 +68,21 @@ export default {
     }
   },
   methods: {
+    closeImg() {
+      this.isView = false
+    },
     clickItem(item) {
-      alert(1)
+      console.log(`https://y.gtimg.cn/music/photo_new/T002R300x300M000${item.albummid}.jpg?max_age=2592000`)
+      this.imgSrc = `https://y.gtimg.cn/music/photo_new/T002R300x300M000${item.albummid}.jpg?max_age=2592000`
+      this.isView = true
     },
     loadBottom() {
       this.currentPage++
       search(this.searchName, this.currentPage, this.showSinger, this.pageSize).then(res => {
         res.data.song.list.forEach(item => {
-          this.resultList.push(item)
+          if(item.albummid) {
+            this.resultList.push(item)
+          }
         })
         this.$refs.loadmore.onBottomLoaded()
       })
@@ -76,7 +99,9 @@ export default {
       }
       search(this.searchName, this.currentPage, this.showSinger, this.pageSize).then(res => {
         res.data.song.list.forEach(item => {
-          this.resultList.push(item)
+          if(item.albummid) {
+            this.resultList.push(item)
+          }
         })
       })
     },
@@ -109,6 +134,41 @@ export default {
           pid
         }
       })
+    },
+    enter(el, done) {
+      let animation = {
+        0: {
+          transform: `translate3d(0, 0, 0) scale(0)`
+        },
+        60: {
+          transform: `translate3d(0, 0, 0) scale(1.1)`
+        },
+        100: {
+          transform: `translate3d(0, 0, 0) scale(1)`
+        }
+      }
+      animations.registerAnimation({
+        name: 'move',
+        animation,
+        presets: {
+          duration: 400,
+          easing: 'linear'
+        }
+      })
+      animations.runAnimation(this.$refs.imgWrapper, 'move', done)
+    },
+    afterEnter(el) {
+      animations.unregisterAnimation('move')
+      this.$refs.imgWrapper.style.animation = ''
+    },
+    leave(el, done) {
+      this.$refs.imgWrapper.style.transition = 'all 0.4s'
+      this.$refs.imgWrapper.style.transform = `translate3d(100vw, 100vh, 0) scale(0)`
+      this.$refs.imgWrapper.addEventListener('transitionend', done)
+    },
+    afterLeave() {
+      this.$refs.imgWrapper.style.transition = ''
+      this.$refs.imgWrapper.style.transform = ''
     }
   },
   created() {
@@ -119,6 +179,28 @@ export default {
 </script>
 <style scoped lang="stylus">
 .search-wrapper
+  .img-pop
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100vh
+    background-color rgba(0, 0, 0, 0.5)
+    z-index 99999999
+    .img
+      position absolute
+      top 40%
+      left 50%
+      width 90%
+      height auto
+      border-radius 50%
+      transform translate3d(-50%, -50%, 0)
+    .close-btn
+      position absolute
+      width 90%
+      bottom 10vh
+      left 50%
+      transform translate3d(-50%, 0, 0)
   .container
     padding 0 4%
     // position fixed
@@ -159,7 +241,7 @@ export default {
         font-size 14px
         color red
       .mt-loadmore-wrapper
-        height calc(100vh - 310px)
+        height calc(100vh - 340px)
         overflow-y auto
         margin-top 10px
         &::-webkit-scrollbar
