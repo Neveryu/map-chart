@@ -23,7 +23,7 @@
             :autoFill="false"
             :distanceIndex="3">
             <ul class="result-list-wrapper">
-              <li @click="clickItem(item)" class="result-item" v-for="(item, index) of resultList">{{ item.songname }}</li>
+              <li @click="clickItem(item)" class="result-item" v-for="(item, index) of resultList" :key="index">{{ item.songname }}</li>
             </ul>
           </mt-loadmore>
         </div>

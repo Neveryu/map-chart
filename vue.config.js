@@ -1,4 +1,7 @@
 'use strict'
+let { version } = require('./package.json')
+version = version.replace(/\./g, '-')
+
 const path = require('path')
 
 function resolve(dir) {
@@ -33,6 +36,10 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '/map-chart/' : '/',
   outputDir: 'dist',
   assetsDir: 'static',
+  // 在 multi-page 模式下构建应用
+  /**
+   * 因为我这里会多一个骨架片的构建，所以这个我使用了pages选项
+   */
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
@@ -66,7 +73,12 @@ module.exports = {
     }
   },
   chainWebpack(config) {
-
+    config.when(process.env.NODE_ENV === 'production', config => {
+      // 给打包后的app.js加上了版本号
+      config.output.filename(`static/js/[name].[hash].${version}.js`).end()
+      // 给打包后的chunk-vendors加上版本号
+      config.output.chunkFilename(`static/js/[name].[hash].${version}.js`).end()
+    })
   },
   pwa: {
     themeColor: 'red',

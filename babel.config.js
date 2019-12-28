@@ -1,8 +1,12 @@
 module.exports = {
   presets: [
+    /**
+     * vue-cli3中babel的预设是@vue/app
+     * vue-cli4中babel的预设是@vue/cli-plugin-babel/preset
+     */
     // '@vue/cli-plugin-babel/preset'
     // '@vue/app'
-    ['@vue/app', {
+    ['@vue/cli-plugin-babel/preset', {
       useBuiltIns: 'entry'
     }]
   ],
