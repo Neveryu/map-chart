@@ -40,7 +40,7 @@
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "vue-loader": "^15.3.0",
-    "vue-server-renderer": "^2.6.10",
+    "vue-server-renderer": "2.6.10",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
     "webpack-cli": "^3.3.10",
